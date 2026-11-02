@@ -1,0 +1,18 @@
+{
+  "display_name": "Window Theme Manager",
+  "description": "Visual picker for open-source color themes (Dracula, Catppuccin, Tokyo Night, Nord, Gruvbox, One Dark, Solarized, Rose Pine, SynthWave '84, Ayu, GitHub, ...). Applies the chosen palette to the current project window by merging workbench.colorCustomizations into that workspace's .vscode/settings.json. The catalog is fetched from Open VSX and GitHub and cached locally so it works offline.",
+  "command": "node",
+  "args": ["server.mjs"],
+  "restart_policy": "always",
+  "has_web_ui": true,
+  "ui_config": {
+    "display_name": "Window Themes",
+    "views": [
+      {
+        "path": "/",
+        "title": "Window Themes",
+        "entrypoint": "SIDECAR_UI_ENTRYPOINT_AUX_PANE"
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+# Only the bundled extension, its media and the panel UI go into the .vsix.
+.gitignore
+.vscodeignore
+plugin.json
+dist/**
+node_modules/**
+scripts/**
+test/**
+extension/src/**
+extension/media/icon.svg
+sidecars/theme-picker/sidecar.json
+sidecars/theme-picker/server.mjs
+sidecars/theme-picker/lib/**
+sidecars/theme-picker/.data/**
+sidecars/theme-picker/.cache/**
+sidecars/theme-picker/public/preload-fallback.js
+**/*.map
+.github/**
+.gitattributes
+docs/**

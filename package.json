@@ -1,0 +1,142 @@
+{
+  "name": "window-theme-manager",
+  "displayName": "Window Theme Manager",
+  "description": "Give every project window its own polished open-source color theme. 80+ themes built in, more from Open VSX, applied per window.",
+  "version": "1.1.0",
+  "publisher": "local",
+  "private": true,
+  "license": "MIT",
+  "icon": "extension/media/icon.png",
+  "engines": {
+    "node": ">=20.10",
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "theme",
+    "colors",
+    "workspace",
+    "window",
+    "title bar",
+    "antigravity"
+  ],
+  "main": "./extension/dist/extension.cjs",
+  "activationEvents": [],
+  "extensionKind": [
+    "workspace"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": {
+      "supported": false,
+      "description": "Colors are written to .vscode/settings.json on disk."
+    }
+  },
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "windowThemes",
+          "title": "Window Themes",
+          "icon": "extension/media/activity.svg"
+        }
+      ]
+    },
+    "views": {
+      "windowThemes": [
+        {
+          "type": "webview",
+          "id": "windowThemes.picker",
+          "name": "Themes",
+          "icon": "extension/media/activity.svg",
+          "contextualTitle": "Window Themes"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "windowThemes.openInEditor",
+        "title": "Open in Editor Tab",
+        "category": "Window Themes",
+        "icon": "$(link-external)"
+      },
+      {
+        "command": "windowThemes.discover",
+        "title": "Find More Themes Online",
+        "category": "Window Themes",
+        "icon": "$(globe)"
+      },
+      {
+        "command": "windowThemes.randomize",
+        "title": "Apply a Random Distinct Theme to This Window",
+        "category": "Window Themes",
+        "icon": "$(symbol-color)"
+      },
+      {
+        "command": "windowThemes.remove",
+        "title": "Remove Theme From This Window",
+        "category": "Window Themes"
+      },
+      {
+        "command": "windowThemes.refresh",
+        "title": "Refresh Theme Catalog",
+        "category": "Window Themes",
+        "icon": "$(refresh)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "windowThemes.randomize",
+          "when": "view == windowThemes.picker",
+          "group": "navigation@1"
+        },
+        {
+          "command": "windowThemes.openInEditor",
+          "when": "view == windowThemes.picker",
+          "group": "navigation@2"
+        },
+        {
+          "command": "windowThemes.refresh",
+          "when": "view == windowThemes.picker",
+          "group": "1_more@1"
+        },
+        {
+          "command": "windowThemes.remove",
+          "when": "view == windowThemes.picker",
+          "group": "1_more@2"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "start": "node sidecars/theme-picker/server.mjs",
+    "fetch-themes": "node scripts/fetch-themes.mjs",
+    "test": "node --test \"test/*.test.mjs\"",
+    "install-plugin": "bash scripts/install.sh",
+    "build": "node scripts/build-extension.mjs",
+    "vscode:prepublish": "node scripts/build-extension.mjs",
+    "package": "node -e \"require('fs').mkdirSync('dist',{recursive:true})\" && vsce package --no-dependencies --out dist/",
+    "install-extension": "bash scripts/install-extension.sh"
+  },
+  "dependencies": {
+    "jsonc-parser": "^3.3.1"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^4.1.0",
+    "esbuild": "^0.28.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Rafat-Aman/AntigravityThemeManagement.git"
+  },
+  "homepage": "https://github.com/Rafat-Aman/AntigravityThemeManagement#readme",
+  "bugs": {
+    "url": "https://github.com/Rafat-Aman/AntigravityThemeManagement/issues"
+  },
+  "author": "Rafat Aman"
+}
